@@ -2,6 +2,7 @@
 #include <Wire.h>
 
 #include "BluetoothSerial.h"
+BluetoothSerial SerialBT;
 
 #include "Adafruit_VL53L0X.h"
 Adafruit_VL53L0X lox = Adafruit_VL53L0X();
@@ -11,7 +12,6 @@ float accX = 0;
 float accY = 0;
 float accZ = 0;
 
-BluetoothSerial SerialBT;
 
 void setup() {
   Wire.begin();
