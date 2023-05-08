@@ -2,7 +2,7 @@ import processing.serial.*;
 
 Serial myPort;
 
-float[] sensorData=new float[3];
+float[] sensorData=new float[4];
 
 void setup() {
   size(800, 600);
@@ -43,11 +43,12 @@ void serialEvent (Serial p) {
     //「,」で区切られたデータ部分を分離してbufferに格納する
     float buffer[] = float(split(stringData, ','));
 
-    //bufferのデータが３個そろっていたら、sensorDataへ
-    if (buffer.length>=3) {
+    //bufferのデータが4個そろっていたら、sensorDataへ
+    if (buffer.length>=4) {
       sensorData[0] = buffer[0];
       sensorData[1] = buffer[1];
       sensorData[2] = buffer[2];
+      sensorData[3] = buffer[3];
     }
   }
 }

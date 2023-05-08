@@ -4,6 +4,10 @@ float accX = 0;
 float accY = 0;
 float accZ = 0;
 
+#include "Adafruit_VL53L0X.h"
+Adafruit_VL53L0X lox = Adafruit_VL53L0X();
+int distance = 0;
+
 void setup() {
   M5.begin();
   M5.IMU.Init();
@@ -16,6 +20,9 @@ void setup() {
   M5.Lcd.printf(" Send via USB");
 
   Serial.begin(9600);
+
+  lox.begin();
+  lox.startRangeContinuous();
 }
 
 void loop() {
@@ -36,6 +43,15 @@ void loop() {
   M5.Lcd.setCursor(240, 92);
   M5.Lcd.print(accZ);
 
+  if (lox.isRangeComplete()) {
+    distance = lox.readRange();
+    M5.Lcd.setCursor(0, 150);
+    M5.Lcd.print("Distance in mm:");
+    M5.Lcd.setCursor(240, 150); //いったん数値のうしろを消す(4ケタなので4コの空白)
+    M5.Lcd.print("    ");
+    M5.Lcd.setCursor(240, 150); //距離の数値を表示する
+    M5.Lcd.print(distance);
+  }
 
   // To Processing
   // via USB
@@ -44,8 +60,8 @@ void loop() {
   Serial.print(accY);
   Serial.print(",");
   Serial.print(accZ);
-  Serial.print(",");  //ダミー
-  Serial.print(0);    //あとから距離センサの数値を入れます
+  Serial.print(",");            //距離センサ情報を追加
+  Serial.print(distance);       //
   Serial.println();
 
   delay(10);
