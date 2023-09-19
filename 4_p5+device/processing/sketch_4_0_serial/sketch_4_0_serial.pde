@@ -48,7 +48,7 @@ void draw() {
   //-1.0~1.0まで変化する、sensorDataを何につかうか、あなた次第！
   background(sensorData[0]*255, sensorData[1]*255, sensorData[2]*255);
 
-  textSize(24);                                //文字のサイズ
+  textSize(24);                //文字のサイズ
   textAlign(CENTER, CENTER);   //文字の整列（ヨコ中央、タテ中央）
   text("x : "+ sensorData[0], 160, height/2);
   text("y : "+ sensorData[1], 320, height/2);
