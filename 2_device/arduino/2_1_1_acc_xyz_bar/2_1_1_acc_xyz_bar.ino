@@ -40,7 +40,7 @@ void loop() {
   M5.Lcd.print(accX);
 
   //センサ情報を幅として四角を描く
-  int ax = mapRange(accX, 1, -1, 0, 320);
+  int ax = map(accX*100, 100, -100, 0, 320);
   M5.Lcd.fillRect(ax, 35, 320 - ax, 10, DARKGREY); //灰色の四角
   M5.Lcd.fillRect(0, 35, ax, 10, RED);  //赤い四角
 
@@ -50,7 +50,7 @@ void loop() {
   M5.Lcd.print("accY");
   M5.Lcd.setCursor(80, 95);
   M5.Lcd.print(accY);
-  int ay = mapRange(accY, 1, -1, 0, 320);
+  int ay = map(accY*100, 100, -100, 0, 320);
   M5.Lcd.fillRect(ay, 125, 320 - ay, 10, DARKGREY); //灰色の四角
   M5.Lcd.fillRect(0, 125, ay, 10, GREEN); //緑の四角
 
@@ -59,13 +59,7 @@ void loop() {
   M5.Lcd.print("accZ");
   M5.Lcd.setCursor(80, 185);
   M5.Lcd.print(accZ);
-  int az = mapRange(accZ, 1, -1, 0, 320);
+  int az = map(accZ*100, 100, -100, 0, 320);
   M5.Lcd.fillRect(az, 215, 320 - az, 10, DARKGREY); //灰色の四角
   M5.Lcd.fillRect(0, 215, az, 10, CYAN); //水色の四角
-}
-
-// mapがうまく機能しなかったので、関数を用意しました
-float mapRange(float value, float a, float b, float c, float d) {
-  value = (value - a) / (b - a);
-  return c + value * (d - c);
 }
