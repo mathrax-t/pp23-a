@@ -36,7 +36,7 @@ void serialEvent (Serial p) {
 void setup() {
   size(640, 480);
 
-  //　---------- シリアル通信の部分 ここまで ---------- //
+  //　---------- シリアル通信の部分 ここから ---------- //
   printArray(Serial.list());  //シリアルポートの番号を確認
   String portName = Serial.list()[1];  //1番目のポートに接続（自分のPCでは1番目かどうか確認して適宜変更）
   myPort = new Serial(this, portName, 9600);  //選んだポートに、9600の速度で接続する
@@ -49,8 +49,8 @@ void draw() {
   background(sensorData[0]*255, sensorData[1]*255, sensorData[2]*255);
 
   textSize(24);                //文字のサイズ
-  textAlign(CENTER, CENTER);   //文字の整列（ヨコ中央、タテ中央）
-  text("x : "+ sensorData[0], 160, height/2);
-  text("y : "+ sensorData[1], 320, height/2);
-  text("z : "+ sensorData[2], 480, height/2);
+  textAlign(LEFT, CENTER);   //文字の整列（ヨコ中央、タテ中央）
+  text("x : "+ sensorData[0], 120, height/2);
+  text("y : "+ sensorData[1], 280, height/2);
+  text("z : "+ sensorData[2], 440, height/2);
 }
