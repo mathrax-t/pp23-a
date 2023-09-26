@@ -97,9 +97,13 @@ void draw() {
   } else if (x>=80 && x<100) {
     count1 = 4;
   }
+  //直前のcount1（last_count1）と今この瞬間のcount1が違うとき
   if (count1 != last_count1) {
+    //透明度を0に
     transparent = 0;
   }
+  //last_count1に、今この瞬間のcount1を覚えておく
+  last_count1 = count1;
 
   //yの範囲で分ける 「以上」と「未満」がポイント
   if (y>=0 && y< 20) {
@@ -113,9 +117,14 @@ void draw() {
   } else if (y>=80 && y<100) {
     count2 = 4;
   }
+  
+  //直前のcount2（last_count2）と今この瞬間のcount2が違うとき
   if (count2 != last_count2) {
+    //透明度を0に
     transparent = 0;
   }
+  //last_count2に、今この瞬間のcount2を覚えておく
+  last_count2 = count2;
 
   //透明度につかう変数を、
   //常に1.0になるまで、0.01ずつ増やす
