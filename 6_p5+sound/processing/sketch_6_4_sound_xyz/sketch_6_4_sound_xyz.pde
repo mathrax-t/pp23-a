@@ -54,7 +54,7 @@ void setup() {
 
   //　---------- シリアル通信の部分 ここから ---------- //
   printArray(Serial.list());
-  String portName = Serial.list()[1];
+  String portName = Serial.list()[PORT_NUM];
   myPort = new Serial(this, portName, 9600);
   //　---------- シリアル通信の部分 ここまで ---------- //
 }

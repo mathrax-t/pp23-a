@@ -16,8 +16,8 @@ float transparent = 0;
 
 
 void setup() {
-  //size(640, 480);
-  fullScreen();
+  size(800, 600);
+  //fullScreen();
 }
 
 void draw() {
