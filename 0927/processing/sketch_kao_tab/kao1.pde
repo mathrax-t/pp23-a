@@ -2,9 +2,9 @@ float x1, y1, z1;
 float t1;
 
 void draw_kao1() {
-  int new_x =int( map(sensorData[0], -1, 1, -150, 150));
-  int new_y =int( map(sensorData[1], -1, 1, -100, 100));
-  int new_z =int( map(sensorData[2], -1, 1, -40, 40));
+  int new_x =int( map(sensorData[0], -1, 1, -150, 150) );
+  int new_y =int( map(sensorData[1], -1, 1, -100, 100) );
+  int new_z =int( map(sensorData[2], -1, 1, -40, 40) );
   
   x1 = x1*(3.0/4.0) + new_x*(1.0/4.0);
   y1 = y1*(3.0/4.0) + new_y*(1.0/4.0);
