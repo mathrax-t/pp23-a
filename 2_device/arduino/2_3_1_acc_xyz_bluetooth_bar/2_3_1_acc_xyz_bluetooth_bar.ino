@@ -1,5 +1,10 @@
 #include <M5Core2.h>
 
+//Bluetoothライブラリを読込む
+#include "BluetoothSerial.h"
+//Bluetoothを管理する変数
+BluetoothSerial SerialBT;
+
 //センサの情報をいれる変数
 float accX = 0;
 float accY = 0;
@@ -12,16 +17,20 @@ void setup() {
   M5.IMU.Init();
 
   //背景の色
-  M5.Lcd.fillScreen(BLACK);
-  M5.Lcd.setTextColor(WHITE, BLACK);
+  M5.Lcd.fillScreen(NAVY);
+  M5.Lcd.setTextColor(WHITE, NAVY);
   M5.Lcd.setTextSize(2);
 
   //座標と文字
   M5.Lcd.setCursor(160, 5);
-  M5.Lcd.print("SENSOR+USB");
+  M5.Lcd.print("USB+BLUETOOTH");
 
   //PCとの通信を始める
   Serial.begin(9600);
+
+  //Bluetooth通信をはじめる
+  //オリジナルのデバイス名を決めてください
+  SerialBT.begin("TAMABI_IDDtest");  
 }
 
 void loop() {
@@ -64,8 +73,17 @@ void loop() {
   Serial.print(accY);
   Serial.print(",");
   Serial.print(accZ);
-  Serial.println();   //最後は改行を送る
-  //PCにデータを送りすぎるので、少し遅らせる
+  Serial.println();  //最後は改行を送る
+
+  //Bluetoothでデータを送信
+  //変数をコンマ区切りにして送る
+  SerialBT.print(accX);
+  SerialBT.print(",");
+  SerialBT.print(accY);
+  SerialBT.print(",");
+  SerialBT.print(accZ);
+  SerialBT.println();  //最後は改行を送る
+
+  //データを送りすぎるので、少し遅らせる
   delay(10);
 }
-
