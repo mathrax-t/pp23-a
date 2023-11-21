@@ -37,7 +37,7 @@ void setup() {
 
   //Bluetooth通信をはじめる
   //オリジナルのデバイス名を決めてください
-  SerialBT.begin("TAMABI_IDDtest");  
+  SerialBT.begin("PP23_Group_D");  
 }
 
 
