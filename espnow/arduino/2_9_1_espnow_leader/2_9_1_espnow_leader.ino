@@ -6,11 +6,11 @@
 #include <esp_wifi.h>
 
 //距離センサのライブラリを読込み
-#include "Adafruit_VL53L0X.h"
-//距離センサを管理する変数
-Adafruit_VL53L0X lox = Adafruit_VL53L0X();
-//距離を入れる変数
-int distance = 0;
+// #include "Adafruit_VL53L0X.h"
+// //距離センサを管理する変数
+// Adafruit_VL53L0X lox = Adafruit_VL53L0X();
+// //距離を入れる変数
+// int distance = 0;
 
 
 //フォロワーを管理する変数
@@ -241,8 +241,8 @@ void setup() {
 
 
   //距離センサを使い始める
-  lox.begin();
-  lox.startRangeContinuous();
+  // lox.begin();
+  // lox.startRangeContinuous();
 
   delay(500);
 
@@ -300,21 +300,21 @@ void loop() {
   M5.Lcd.fillRect(az, 215, 320 - az, 5, DARKGREY);  //灰色の四角
   M5.Lcd.fillRect(0, 215, az, 5, CYAN);             //水色の四角
   //距離センサ
-  if (lox.isRangeComplete()) {
-    distance = lox.readRange();
-    M5.Lcd.setCursor(5, 190);
-    M5.Lcd.print("Distance in mm:");
-    M5.Lcd.setCursor(240, 190);  //いったん数値のうしろを消す(4ケタなので4コの空白)
-    M5.Lcd.print("    ");
-    M5.Lcd.setCursor(240, 190);  //距離の数値を表示する
-    M5.Lcd.print(distance);
+  // if (lox.isRangeComplete()) {
+  //   distance = lox.readRange();
+  //   M5.Lcd.setCursor(5, 190);
+  //   M5.Lcd.print("Distance in mm:");
+  //   M5.Lcd.setCursor(240, 190);  //いったん数値のうしろを消す(4ケタなので4コの空白)
+  //   M5.Lcd.print("    ");
+  //   M5.Lcd.setCursor(240, 190);  //距離の数値を表示する
+  //   M5.Lcd.print(distance);
 
-    int ad = mapRange(distance, 0, 1200, 0, 255);
-    ad = constrain(ad, 0, 255);
-    sensor_data[3] = ad;
-    M5.Lcd.fillRect(ad, 220, 320 - ad, 10, DARKGREY);  //灰色の四角
-    M5.Lcd.fillRect(0, 220, ad, 10, YELLOW);           //黄色の四角
-  }
+  //   int ad = mapRange(distance, 0, 1200, 0, 255);
+  //   ad = constrain(ad, 0, 255);
+  //   sensor_data[3] = ad;
+  //   M5.Lcd.fillRect(ad, 220, 320 - ad, 10, DARKGREY);  //灰色の四角
+  //   M5.Lcd.fillRect(0, 220, ad, 10, YELLOW);           //黄色の四角
+  // }
   if (follower.channel == CHANNEL) {  // check if follower channel is defined
     bool isPaired = manageFollower();
     if (isPaired) {
